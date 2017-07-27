@@ -40,9 +40,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
   public boolean onKey(View view, int i, KeyEvent keyEvent) {
 
     if (i == KeyEvent.KEYCODE_ENTER && keyEvent.getAction() == KeyEvent.ACTION_DOWN) {
-
       signUp(view);
-
     }
 
     return false;
