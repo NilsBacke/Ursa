@@ -150,11 +150,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     RelativeLayout backgroundRelativeLayout = (RelativeLayout) findViewById(R.id.backgroundRelativeLayout);
 
-    ImageView logoImageView = (ImageView) findViewById(R.id.logoImageView);
-
     backgroundRelativeLayout.setOnClickListener(this);
-
-    logoImageView.setOnClickListener(this);
 
     passwordEditText = (EditText) findViewById(R.id.passwordEditText);
 
