@@ -28,6 +28,8 @@ import com.parse.ParseException;
 import com.parse.ParseUser;
 import com.parse.SignUpCallback;
 
+import java.util.ArrayList;
+
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener, View.OnKeyListener {
 
@@ -63,13 +65,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         } else {
 
             if (signUpModeActive) {
-                ParseUser user = new ParseUser();
-
-                user.setUsername(usernameEditText.getText().toString());
-                user.setPassword(passwordEditText.getText().toString());
-                user.setEmail(emailEditText.getText().toString());
-                user.put("name", nameEditText.getText().toString());
-
 //                user.signUpInBackground(new SignUpCallback() {
 //                    @Override
 //                    public void done(ParseException e) {
@@ -81,8 +76,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //                    }
 //                });
 
+                ArrayList<String> data = new ArrayList();
+                data.add(nameEditText.getText().toString());
+                data.add(emailEditText.getText().toString());
+                data.add(usernameEditText.getText().toString());
+                data.add(passwordEditText.getText().toString());
                 Intent intent = new Intent(MainActivity.this, GenderSelectionActivity.class);
-                intent.putExtra("user", user);
+                intent.putExtra("data", data);
                 startActivity(intent);
 
             } else {

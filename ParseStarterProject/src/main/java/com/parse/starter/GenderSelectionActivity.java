@@ -7,35 +7,38 @@ import android.view.View;
 
 import com.parse.ParseUser;
 
+import java.util.ArrayList;
+
 public class GenderSelectionActivity extends AppCompatActivity {
 
-    ParseUser user;
+    ArrayList<String> data;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gender_selection);
+        data = new ArrayList<>();
     }
 
     @Override
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
-        user = (ParseUser) intent.getSerializableExtra("user");
+        data.addAll(intent.getStringArrayListExtra("data"));
     }
 
     public void male(View view) {
-        user.put("gender", "male");
+        data.add("male");
         goToInformation();
     }
 
     public void female(View view) {
-        user.put("gender", "female");
+        data.add("female");
         goToInformation();
     }
 
     public void goToInformation() {
         Intent intent = new Intent(GenderSelectionActivity.this, EnterInformationActivity.class);
-        intent.putExtra("user", user);
+        intent.putExtra("data", data);
         startActivity(intent);
     }
 }
