@@ -43,7 +43,8 @@ public class EnterInformationActivity extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 weight = Double.parseDouble(weightEditText.getText().toString());
-                double bmi = weight * 0.45 / Math.pow(Double.parseDouble(s.toString()) * 0.254, 2);
+                double bmi = weight * 0.45 / Math.pow(Double.parseDouble(s.toString()) * 0.0254, 2);
+                bmiTextView.setText("BMI: " + Math.round(bmi * 10)/ 10.0);
             }
 
             @Override
@@ -78,6 +79,6 @@ public class EnterInformationActivity extends AppCompatActivity {
         user.put("height", height);
         user.put("BMI", bmi);
 
-        bmiTextView.setText(Double.toString(bmi));
+        //Get baseline score
     }
 }
