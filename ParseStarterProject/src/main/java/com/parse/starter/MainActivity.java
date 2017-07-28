@@ -1,144 +1,101 @@
-/*
- * Copyright (c) 2015-present, Parse, LLC.
- * All rights reserved.
- *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
- */
 package com.parse.starter;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
-import android.view.KeyEvent;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.view.View;
-import android.view.inputmethod.InputMethodManager;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
-import android.widget.Toast;
+import android.support.design.widget.NavigationView;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 
-import com.parse.LogInCallback;
-import com.parse.ParseAnalytics;
-import com.parse.ParseException;
-import com.parse.ParseUser;
-import com.parse.SignUpCallback;
-
-import java.util.ArrayList;
-
-
-public class MainActivity extends AppCompatActivity implements View.OnClickListener, View.OnKeyListener {
-
-    Boolean signUpModeActive = true;
-    TextView changeSignupModeTextView;
-    EditText passwordEditText;
-    EditText usernameEditText;
-    EditText nameEditText;
-    EditText emailEditText;
+public class MainActivity extends AppCompatActivity
+        implements NavigationView.OnNavigationItemSelectedListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
-        RelativeLayout backgroundRelativeLayout = (RelativeLayout) findViewById(R.id.backgroundRelativeLayout);
-        changeSignupModeTextView = (TextView) findViewById(R.id.changeSignupModeTextView);
-        passwordEditText = (EditText) findViewById(R.id.passwordEditText);
-        usernameEditText = (EditText) findViewById(R.id.usernameEditText);
-        nameEditText = (EditText) findViewById(R.id.nameEditText);
-        emailEditText = (EditText) findViewById(R.id.emailEditText);
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
+            }
+        });
 
-        changeSignupModeTextView.setOnClickListener(this);
-        backgroundRelativeLayout.setOnClickListener(this);
-        passwordEditText.setOnKeyListener(this);
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer.setDrawerListener(toggle);
+        toggle.syncState();
 
-        ParseAnalytics.trackAppOpenedInBackground(getIntent());
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
     }
 
-    public void signUp(View view) {
-        if (usernameEditText.getText().toString().matches("") || passwordEditText.getText().toString().matches("")) {
-            Toast.makeText(this, "A username and password are required.", Toast.LENGTH_SHORT).show();
+    @Override
+    public void onBackPressed() {
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
+            drawer.closeDrawer(GravityCompat.START);
         } else {
-
-            if (signUpModeActive) {
-//                ParseUser user = new ParseUser();
-//                user.setUsername(usernameEditText.getText().toString());
-//                user.setPassword(passwordEditText.getText().toString());
-//                user.signUpInBackground(new SignUpCallback() {
-//                    @Override
-//                    public void done(ParseException e) {
-//                        if (e == null) {
-//                            Log.i("Signup", "Successful");
-//                        } else {
-//                            Toast.makeText(MainActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
-//                        }
-//                    }
-//                });
-
-                ArrayList<String> data = new ArrayList();
-                data.add(nameEditText.getText().toString());
-                data.add(emailEditText.getText().toString());
-                data.add(usernameEditText.getText().toString());
-                data.add(passwordEditText.getText().toString());
-                Intent intent = new Intent(MainActivity.this, GenderSelectionActivity.class);
-                intent.putExtra("data", data);
-                startActivity(intent);
-
-            } else {
-                ParseUser.logInInBackground(usernameEditText.getText().toString(), passwordEditText.getText().toString(), new LogInCallback() {
-                    @Override
-                    public void done(ParseUser user, ParseException e) {
-                        if (user != null) {
-                            Log.i("Signup", "Login successful");
-                            Intent intent = new Intent(MainActivity.this, BaseLineDisplayActivity.class);
-                            startActivity(intent);
-                        } else {
-                            Toast.makeText(MainActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                });
-            }
+            super.onBackPressed();
         }
     }
 
-
     @Override
-    public boolean onKey(View view, int i, KeyEvent keyEvent) {
-        if (i == KeyEvent.KEYCODE_ENTER && keyEvent.getAction() == KeyEvent.ACTION_DOWN) {
-            signUp(view);
-        }
-        return false;
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.main, menu);
+        return true;
     }
 
     @Override
-    public void onClick(View view) {
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
 
-        if (view.getId() == R.id.changeSignupModeTextView) {
-
-            Button signupButton = (Button) findViewById(R.id.signupButton);
-
-            if (signUpModeActive) {
-                signUpModeActive = false;
-                signupButton.setText("Login");
-                changeSignupModeTextView.setText("Or, Signup");
-                nameEditText.setVisibility(View.INVISIBLE);
-                emailEditText.setVisibility(View.INVISIBLE);
-            } else {
-                signUpModeActive = true;
-                signupButton.setText("Signup");
-                changeSignupModeTextView.setText("Or, Login");
-                nameEditText.setVisibility(View.VISIBLE);
-                emailEditText.setVisibility(View.VISIBLE);
-            }
-
-        } else if (view.getId() == R.id.backgroundRelativeLayout) {
-            InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
-            inputMethodManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_settings) {
+            return true;
         }
 
+        return super.onOptionsItemSelected(item);
+    }
+
+    @SuppressWarnings("StatementWithEmptyBody")
+    @Override
+    public boolean onNavigationItemSelected(MenuItem item) {
+        // Handle navigation view item clicks here.
+        int id = item.getItemId();
+
+        if (id == R.id.nav_camera) {
+            // Handle the camera action
+        } else if (id == R.id.nav_gallery) {
+
+        } else if (id == R.id.nav_slideshow) {
+
+        } else if (id == R.id.nav_manage) {
+
+        } else if (id == R.id.nav_share) {
+
+        } else if (id == R.id.nav_send) {
+
+        }
+
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawer.closeDrawer(GravityCompat.START);
+        return true;
     }
 }

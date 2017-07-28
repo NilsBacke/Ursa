@@ -26,4 +26,5 @@ dependencies {
     compile project(':Parse')
     compile 'com.parse:parse-android:1.15.8'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    compile 'com.android.support:design:25.3.1'
 }
