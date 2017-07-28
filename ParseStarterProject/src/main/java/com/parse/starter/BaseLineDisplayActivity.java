@@ -16,7 +16,7 @@ public class BaseLineDisplayActivity extends AppCompatActivity {
         setContentView(R.layout.activity_base_line_display);
 
         TextView baselineTextView = (TextView) findViewById(R.id.baselineText);
-        baselineTextView.setText(Double.toString(Math.round((Double) ParseUser.getCurrentUser().get("baseline")*1000.0)/1000.0));
+        baselineTextView.setText(Double.toString((Double) ParseUser.getCurrentUser().get("baseline")));
     }
 
     public void startButton(View view) {

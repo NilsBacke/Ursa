@@ -7,6 +7,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -71,9 +72,10 @@ public class EnterInformationActivity extends AppCompatActivity {
 
         //Get baseline score
         BaseLine baseLine = new BaseLine();
-        final double baseline = baseLine.getBaseLineScore(age, bmi);
+        final double baseline = Math.round(baseLine.getBaseLineScore(age, bmi)*1000.0)/1000.0;
 
         user.put("baseline", baseline);
+        user.put("score", baseline);
 
         user.signUpInBackground(new SignUpCallback() {
             @Override
@@ -90,6 +92,9 @@ public class EnterInformationActivity extends AppCompatActivity {
     }
 
     public void calculateBMI(View view) {
+        InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+        inputMethodManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+
         weight = Double.parseDouble(weightEditText.getText().toString());
         height = Double.parseDouble(feetEditText.getText().toString()) * 12 + Double.parseDouble(inchesEditText.getText().toString());;
         double bmi = weight * 0.45 / Math.pow(height * 0.0254, 2);
