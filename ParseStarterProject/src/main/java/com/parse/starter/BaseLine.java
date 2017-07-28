@@ -5,6 +5,7 @@ package com.parse.starter;
  */
 
 public class BaseLine {
+
     public BaseLine() {
     }
 

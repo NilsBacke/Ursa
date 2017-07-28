@@ -21,9 +21,9 @@ public class GenderSelectionActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onNewIntent(Intent intent) {
-        super.onNewIntent(intent);
-        data.addAll(intent.getStringArrayListExtra("data"));
+    protected void onStart() {
+        super.onStart();
+        data.addAll(getIntent().getStringArrayListExtra("data"));
     }
 
     public void male(View view) {

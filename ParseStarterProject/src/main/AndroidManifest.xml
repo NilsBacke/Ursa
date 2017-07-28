@@ -38,7 +38,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".GenderSelectionActivity" />
-        <activity android:name=".EnterInformationActivity"></activity>
+        <activity android:name=".EnterInformationActivity" />
+        <activity android:name=".BaseLineDisplayActivity"></activity>
     </application>
 
 </manifest>

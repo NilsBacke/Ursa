@@ -19,48 +19,93 @@
             android:id="@+id/ageEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="10dp"
             android:ems="10"
             android:hint="Enter your age..."
-            android:inputType="textPersonName"
-            android:layout_margin="10dp"/>
+            android:inputType="number" />
 
-        <EditText
-            android:id="@+id/weightEditText"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="Enter your weight..."
-            android:inputType="textPersonName"
-            android:layout_margin="10dp"/>
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:weightSum="1">
 
-        <EditText
-            android:id="@+id/heightEditText"
+            <EditText
+                android:id="@+id/weightEditText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:ems="10"
+                android:hint="Enter your weight..."
+                android:inputType="numberDecimal"
+                android:layout_weight="0.95" />
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="lbs."
+                android:textSize="20sp" />
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="Enter your height..."
-            android:inputType="textPersonName"
-            android:layout_margin="10dp"/>
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:weightSum="1">
+
+            <EditText
+                android:id="@+id/feetEditText"
+                android:layout_width="169dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:ems="10"
+                android:hint="ft..."
+                android:inputType="number" />
+
+            <EditText
+                android:id="@+id/inchesEditText"
+                android:layout_width="173dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:ems="10"
+                android:hint="in..."
+                android:inputType="number" />
+
+        </LinearLayout>
 
     </LinearLayout>
+
+    <Button
+        android:id="@+id/calcButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/linearLayout2"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="21dp"
+        android:layout_weight="1"
+        android:onClick="calculateBMI"
+        android:text="Calculate BMI" />
 
     <TextView
         android:id="@+id/bmi"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/linearLayout2"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="30dp"
         android:text="BMI: "
-        android:textSize="30sp" />
+        android:textSize="30sp"
+        android:layout_marginTop="45dp"
+        android:layout_below="@+id/calcButton"
+        android:layout_centerHorizontal="true" />
 
     <Button
         android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="93dp"
         android:onClick="continueButton"
-        android:text="Continue" />
+        android:text="Continue"
+        android:layout_marginBottom="66dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
+
 </RelativeLayout>

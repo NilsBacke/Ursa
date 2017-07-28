@@ -65,6 +65,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         } else {
 
             if (signUpModeActive) {
+//                ParseUser user = new ParseUser();
+//                user.setUsername(usernameEditText.getText().toString());
+//                user.setPassword(passwordEditText.getText().toString());
 //                user.signUpInBackground(new SignUpCallback() {
 //                    @Override
 //                    public void done(ParseException e) {
@@ -91,6 +94,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     public void done(ParseUser user, ParseException e) {
                         if (user != null) {
                             Log.i("Signup", "Login successful");
+                            Intent intent = new Intent(MainActivity.this, BaseLineDisplayActivity.class);
+                            startActivity(intent);
                         } else {
                             Toast.makeText(MainActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
                         }
