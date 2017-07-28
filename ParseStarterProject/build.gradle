@@ -22,7 +22,8 @@ android {
 
 dependencies {
     compile "com.android.support:appcompat-v7:$supportLibVersion"
-    compile 'com.parse:parse-android:1.15.8'
 
     compile project(':Parse')
+    compile 'com.parse:parse-android:1.15.8'
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'
 }

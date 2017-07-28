@@ -31,7 +31,7 @@
             android:layout_above="@+id/passwordEditText"
             android:ems="10"
             android:hint="Enter your full name..."
-            android:inputType="textPersonName" />
+            android:inputType="textCapWords|textPersonName" />
 
         <EditText
             android:id="@+id/emailEditText"
