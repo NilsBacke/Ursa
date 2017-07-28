@@ -69,7 +69,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 user.setPassword(passwordEditText.getText().toString());
                 user.setEmail(emailEditText.getText().toString());
                 user.put("name", nameEditText.getText().toString());
-//
+
 //                user.signUpInBackground(new SignUpCallback() {
 //                    @Override
 //                    public void done(ParseException e) {
