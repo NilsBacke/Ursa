@@ -38,10 +38,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     EditText nameEditText;
     EditText emailEditText;
 
-
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
