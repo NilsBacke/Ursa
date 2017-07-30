@@ -40,11 +40,11 @@
         <activity android:name=".GenderSelectionActivity" />
         <activity android:name=".EnterInformationActivity" />
         <activity android:name=".BaseLineDisplayActivity" />
+        <activity android:name=".UserListActivity" />
         <activity
             android:name=".MainActivity"
-            android:label="@string/title_activity_main"
-            android:theme="@style/AppTheme" />
-        <activity android:name=".SkillsActivity"></activity>
+            android:label="@string/title_activity_main2"
+            android:theme="@style/AppTheme"></activity>
     </application>
 
 </manifest>

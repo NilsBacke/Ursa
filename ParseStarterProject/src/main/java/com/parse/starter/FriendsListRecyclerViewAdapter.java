@@ -7,32 +7,32 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.parse.ParseUser;
 
 import java.util.ArrayList;
 
 
-public class MyRecyclerViewAdapter extends RecyclerView
-        .Adapter<MyRecyclerViewAdapter
+public class FriendsListRecyclerViewAdapter extends RecyclerView
+        .Adapter<FriendsListRecyclerViewAdapter
         .DataObjectHolder> {
 
-    private static String LOG_TAG = "MyRecyclerViewAdapter";
-    private ArrayList<DataObject> mDataset;
+    private ArrayList<ParseUser> mDataset;
     private Context context;
     private static MyClickListener myClickListener;
 
 
 
     public static class DataObjectHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        TextView label;
-        ImageView imageView;
+        TextView name;
+        TextView username;
 
         public DataObjectHolder(View itemView) {
             super(itemView);
-            label = (TextView) itemView.findViewById(R.id.itemTextView);
-            imageView = (ImageView) itemView.findViewById(R.id.itemImageView);
-            Log.i(LOG_TAG, "Adding Listener");
+            name = (TextView) itemView.findViewById(R.id.friendsNameText);
+            username = (TextView) itemView.findViewById(R.id.friendsUsernameText);
+            Log.i("Friends", "Adding Listener");
             itemView.setOnClickListener(this);
         }
 
@@ -49,7 +49,7 @@ public class MyRecyclerViewAdapter extends RecyclerView
         this.myClickListener = myClickListener;
     }
 
-    public MyRecyclerViewAdapter(ArrayList<DataObject> myDataset, Context context) {
+    public FriendsListRecyclerViewAdapter(ArrayList<ParseUser> myDataset, Context context) {
         mDataset = myDataset;
         this.context = context;
     }
@@ -58,7 +58,7 @@ public class MyRecyclerViewAdapter extends RecyclerView
     public DataObjectHolder onCreateViewHolder(ViewGroup parent,
                                                int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.recyclerview_item, parent, false);
+                .inflate(R.layout.skillsrecyclerview_item, parent, false);
 
         DataObjectHolder dataObjectHolder = new DataObjectHolder(view);
         return dataObjectHolder;
@@ -66,11 +66,11 @@ public class MyRecyclerViewAdapter extends RecyclerView
 
     @Override
     public void onBindViewHolder(DataObjectHolder holder, int position) {
-        holder.label.setText(mDataset.get(position).getText());
-        holder.imageView.setImageResource(mDataset.get(position).getImage());
+        holder.name.setText(mDataset.get(position).get("name").toString());
+        holder.username.setText(mDataset.get(position).getUsername().toString());
     }
 
-    public void addItem(DataObject dataObj, int index) {
+    public void addItem(ParseUser dataObj, int index) {
         mDataset.add(dataObj);
         notifyItemInserted(index);
     }
