@@ -16,6 +16,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.parse.LogOutCallback;
@@ -48,6 +50,12 @@ public class MainActivity extends AppCompatActivity
             getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, new HomeFragment()).commit();
             navigationView.getMenu().getItem(0).setChecked(true);
         }
+
+        View hView =  navigationView.getHeaderView(0);
+        TextView userName = (TextView) hView.findViewById(R.id.userName);
+        TextView userEmail = (TextView) hView.findViewById(R.id.userEmail);
+        userName.setText(ParseUser.getCurrentUser().get("name").toString());
+        userEmail.setText(ParseUser.getCurrentUser().getEmail());
     }
 
     @Override
