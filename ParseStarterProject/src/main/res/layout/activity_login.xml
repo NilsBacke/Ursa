@@ -15,14 +15,15 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context=".LogInActivity"
+    tools:context=".LogIn.LogInActivity"
     android:id="@+id/backgroundRelativeLayout">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:id="@+id/linearLayout">
+        android:id="@+id/linearLayout"
+        android:layout_marginTop="25dp">
 
         <EditText
             android:id="@+id/nameEditText"

@@ -10,14 +10,15 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.parse.starter.MainFragments.DataObject;
+
 import java.util.ArrayList;
 
 
-public class MyRecyclerViewAdapter extends RecyclerView
-        .Adapter<MyRecyclerViewAdapter
+public class SkillsRecyclerViewAdapter extends RecyclerView
+        .Adapter<SkillsRecyclerViewAdapter
         .DataObjectHolder> {
 
-    private static String LOG_TAG = "MyRecyclerViewAdapter";
     private ArrayList<DataObject> mDataset;
     private Context context;
     private static MyClickListener myClickListener;
@@ -32,7 +33,6 @@ public class MyRecyclerViewAdapter extends RecyclerView
             super(itemView);
             label = (TextView) itemView.findViewById(R.id.itemTextView);
             imageView = (ImageView) itemView.findViewById(R.id.itemImageView);
-            Log.i(LOG_TAG, "Adding Listener");
             itemView.setOnClickListener(this);
         }
 
@@ -49,7 +49,7 @@ public class MyRecyclerViewAdapter extends RecyclerView
         this.myClickListener = myClickListener;
     }
 
-    public MyRecyclerViewAdapter(ArrayList<DataObject> myDataset, Context context) {
+    public SkillsRecyclerViewAdapter(ArrayList<DataObject> myDataset, Context context) {
         mDataset = myDataset;
         this.context = context;
     }
@@ -58,7 +58,7 @@ public class MyRecyclerViewAdapter extends RecyclerView
     public DataObjectHolder onCreateViewHolder(ViewGroup parent,
                                                int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.recyclerview_item, parent, false);
+                .inflate(R.layout.skillsrecyclerview_item, parent, false);
 
         DataObjectHolder dataObjectHolder = new DataObjectHolder(view);
         return dataObjectHolder;

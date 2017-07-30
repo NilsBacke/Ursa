@@ -1,4 +1,4 @@
-package com.parse.starter;
+package com.parse.starter.LogIn;
 
 import android.content.Context;
 import android.util.Log;

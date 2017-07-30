@@ -1,26 +1,43 @@
-package com.parse.starter;
+package com.parse.starter.MainFragments;
 
-import android.support.v7.app.AppCompatActivity;
+import android.content.Context;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+
+import com.parse.starter.R;
+import com.parse.starter.SkillsRecyclerViewAdapter;
 
 import java.util.ArrayList;
 
 
-public class SkillsActivity extends AppCompatActivity {
+public class SkillsFragment extends Fragment {
 
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
+    private static String title = "Skills";
+
+    public static Fragment newInstance(Context context) {
+        SkillsFragment f = new SkillsFragment();
+        return f;
+    }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_skills);
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
+        ViewGroup root = (ViewGroup) inflater.inflate(R.layout.fragment_skills, null);
+        getActivity().setTitle(title);
 
         // For images, see licensing info in raw
         ArrayList<DataObject> list = new ArrayList<>();
@@ -34,33 +51,26 @@ public class SkillsActivity extends AppCompatActivity {
         list.add(new DataObject("Vertical Leaps", R.drawable.verticalleaps));
         list.add(new DataObject("Body Weight", R.drawable.bodyweight));
 
-        mRecyclerView = (RecyclerView) findViewById(R.id.recyclerView);
+        mRecyclerView = (RecyclerView) root.findViewById(R.id.skillsRecyclerView);
         mRecyclerView.setHasFixedSize(true);
-        mLayoutManager = new LinearLayoutManager(this);
+        mLayoutManager = new LinearLayoutManager(getActivity());
         mRecyclerView.setLayoutManager(mLayoutManager);
-        mAdapter = new MyRecyclerViewAdapter(list, this);
+        mAdapter = new SkillsRecyclerViewAdapter(list, getActivity());
         mRecyclerView.setAdapter(mAdapter);
         RecyclerView.ItemDecoration itemDecoration =
-                new DividerItemDecoration(this, LinearLayoutManager.VERTICAL);
+                new DividerItemDecoration(getActivity(), LinearLayoutManager.VERTICAL);
         mRecyclerView.addItemDecoration(itemDecoration);
-
-        // Code to Add an item with default animation
-        //((MyRecyclerViewAdapter) mAdapter).addItem(obj, index);
-
-        // Code to remove an item with default animation
-        //((MyRecyclerViewAdapter) mAdapter).deleteItem(index);
+        return root;
     }
 
     @Override
-    protected void onResume() {
+    public void onResume() {
         super.onResume();
-        ((MyRecyclerViewAdapter) mAdapter).setOnItemClickListener(new MyRecyclerViewAdapter.MyClickListener() {
+        ((SkillsRecyclerViewAdapter) mAdapter).setOnItemClickListener(new SkillsRecyclerViewAdapter.MyClickListener() {
             @Override
             public void onItemClick(int position, View v) {
                 Log.i("Skills", " Clicked on Item " + position);
             }
         });
     }
-
-
 }

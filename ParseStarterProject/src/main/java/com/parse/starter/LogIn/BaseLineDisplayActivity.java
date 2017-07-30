@@ -1,4 +1,4 @@
-package com.parse.starter;
+package com.parse.starter.LogIn;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -7,6 +7,8 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.parse.ParseUser;
+import com.parse.starter.MainFragments.MainActivity;
+import com.parse.starter.R;
 
 public class BaseLineDisplayActivity extends AppCompatActivity {
 
