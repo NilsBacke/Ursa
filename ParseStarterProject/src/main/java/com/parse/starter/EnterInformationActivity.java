@@ -72,7 +72,7 @@ public class EnterInformationActivity extends AppCompatActivity {
 
         //Get baseline score
         BaseLine baseLine = new BaseLine();
-        final double baseline = Math.round(baseLine.getBaseLineScore(age, bmi)*1000.0)/1000.0;
+        final double baseline = Math.round(baseLine.getBaseLineScore(age, bmi*100)*1000.0)/1000.0;
 
         user.put("baseline", baseline);
         user.put("score", baseline);
