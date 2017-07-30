@@ -1,4 +1,4 @@
-package com.parse.starter;
+package com.parse.starter.LogIn;
 
 /**
  * Created by nWoody on 7/27/2017.

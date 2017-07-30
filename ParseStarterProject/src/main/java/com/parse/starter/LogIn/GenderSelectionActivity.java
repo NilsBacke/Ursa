@@ -1,11 +1,11 @@
-package com.parse.starter;
+package com.parse.starter.LogIn;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
-import com.parse.ParseUser;
+import com.parse.starter.R;
 
 import java.util.ArrayList;
 

@@ -19,7 +19,6 @@ public class FriendsListRecyclerViewAdapter extends RecyclerView
         .DataObjectHolder> {
 
     private ArrayList<ParseUser> mDataset;
-    private Context context;
     private static MyClickListener myClickListener;
 
 
@@ -49,16 +48,17 @@ public class FriendsListRecyclerViewAdapter extends RecyclerView
         this.myClickListener = myClickListener;
     }
 
-    public FriendsListRecyclerViewAdapter(ArrayList<ParseUser> myDataset, Context context) {
-        mDataset = myDataset;
-        this.context = context;
+    public FriendsListRecyclerViewAdapter(ArrayList<ParseUser> myDataset) {
+        mDataset = new ArrayList<>();
+        mDataset.addAll(myDataset);
+        Log.i("Adapter", mDataset.toString());
     }
 
     @Override
     public DataObjectHolder onCreateViewHolder(ViewGroup parent,
                                                int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.skillsrecyclerview_item, parent, false);
+                .inflate(R.layout.friendslistrecycleitem, parent, false);
 
         DataObjectHolder dataObjectHolder = new DataObjectHolder(view);
         return dataObjectHolder;

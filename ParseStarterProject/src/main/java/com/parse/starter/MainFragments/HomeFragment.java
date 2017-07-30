@@ -1,7 +1,6 @@
-package com.parse.starter;
+package com.parse.starter.MainFragments;
 
 import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -10,13 +9,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.parse.ParseUser;
-
-import android.content.Context;
-import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
+import com.parse.starter.R;
 
 public class HomeFragment extends Fragment {
 
@@ -38,7 +31,12 @@ public class HomeFragment extends Fragment {
         getActivity().setTitle(title);
 
         TextView scoreText = (TextView) root.findViewById(R.id.myScoreText);
-        scoreText.setText(ParseUser.getCurrentUser().get("score").toString());
+        try {
+            scoreText.setText(ParseUser.getCurrentUser().get("score").toString());
+        } catch (Exception e) {
+            e.printStackTrace();
+            scoreText.setText("0");
+        }
         return root;
     }
 

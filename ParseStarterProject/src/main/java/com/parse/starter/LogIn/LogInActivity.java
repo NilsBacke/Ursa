@@ -6,7 +6,7 @@
  * LICENSE file in the root directory of this source tree. An additional grant
  * of patent rights can be found in the PATENTS file in the same directory.
  */
-package com.parse.starter;
+package com.parse.starter.LogIn;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -25,6 +25,8 @@ import com.parse.LogInCallback;
 import com.parse.ParseAnalytics;
 import com.parse.ParseException;
 import com.parse.ParseUser;
+import com.parse.starter.MainFragments.MainActivity;
+import com.parse.starter.R;
 
 import java.util.ArrayList;
 
@@ -55,6 +57,10 @@ public class LogInActivity extends AppCompatActivity implements View.OnClickList
         passwordEditText.setOnKeyListener(this);
 
         ParseAnalytics.trackAppOpenedInBackground(getIntent());
+
+//        if (ParseUser.getCurrentUser() != null) {
+//            startActivity(new Intent(LogInActivity.this, MainActivity.class));
+//        }
     }
 
     public void signUp(View view) {
@@ -63,20 +69,6 @@ public class LogInActivity extends AppCompatActivity implements View.OnClickList
         } else {
 
             if (signUpModeActive) {
-//                ParseUser user = new ParseUser();
-//                user.setUsername(usernameEditText.getText().toString());
-//                user.setPassword(passwordEditText.getText().toString());
-//                user.signUpInBackground(new SignUpCallback() {
-//                    @Override
-//                    public void done(ParseException e) {
-//                        if (e == null) {
-//                            Log.i("Signup", "Successful");
-//                        } else {
-//                            Toast.makeText(LogInActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
-//                        }
-//                    }
-//                });
-
                 ArrayList<String> data = new ArrayList();
                 data.add(nameEditText.getText().toString());
                 data.add(emailEditText.getText().toString());
@@ -132,11 +124,19 @@ public class LogInActivity extends AppCompatActivity implements View.OnClickList
                 nameEditText.setVisibility(View.VISIBLE);
                 emailEditText.setVisibility(View.VISIBLE);
             }
-
-        } else if (view.getId() == R.id.backgroundRelativeLayout) {
-            InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
-            inputMethodManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
         }
+//        } else if (view.getId() == R.id.backgroundRelativeLayout) {
+//            InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+//            inputMethodManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+//        }
 
     }
+
+//    @Override
+//    protected void onResume() {
+//        super.onResume();
+//        if (ParseUser.getCurrentUser() != null) {
+//            startActivity(new Intent(LogInActivity.this, MainActivity.class));
+//        }
+//    }
 }

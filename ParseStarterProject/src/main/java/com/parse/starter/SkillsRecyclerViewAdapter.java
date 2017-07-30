@@ -10,6 +10,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.parse.starter.MainFragments.DataObject;
+
 import java.util.ArrayList;
 
 
@@ -17,7 +19,6 @@ public class SkillsRecyclerViewAdapter extends RecyclerView
         .Adapter<SkillsRecyclerViewAdapter
         .DataObjectHolder> {
 
-    private static String LOG_TAG = "SkillsRecyclerViewAdapter";
     private ArrayList<DataObject> mDataset;
     private Context context;
     private static MyClickListener myClickListener;
@@ -32,7 +33,6 @@ public class SkillsRecyclerViewAdapter extends RecyclerView
             super(itemView);
             label = (TextView) itemView.findViewById(R.id.itemTextView);
             imageView = (ImageView) itemView.findViewById(R.id.itemImageView);
-            Log.i(LOG_TAG, "Adding Listener");
             itemView.setOnClickListener(this);
         }
 

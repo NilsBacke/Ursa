@@ -1,4 +1,4 @@
-package com.parse.starter;
+package com.parse.starter.MainFragments;
 
 /**
  * Created by Nils on 7/28/17.
