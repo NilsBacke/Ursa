@@ -114,6 +114,8 @@ public class MainActivity extends AppCompatActivity
                             if (e == null) {
                                 Toast.makeText(MainActivity.this, "Sign out successful", Toast.LENGTH_SHORT).show();
                                 startActivity(new Intent(MainActivity.this, LogInActivity.class));
+                            } else {
+                                Toast.makeText(MainActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
                             }
                         }
                     });
