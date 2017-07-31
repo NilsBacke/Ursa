@@ -23,6 +23,8 @@ public class FriendsListRecyclerViewAdapter extends RecyclerView
 
 
 
+
+
     public static class DataObjectHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView name;
         TextView username;
