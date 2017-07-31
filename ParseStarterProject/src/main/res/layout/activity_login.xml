@@ -7,23 +7,25 @@
   ~ of patent rights can be found in the PATENTS file in the same directory.
   -->
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context=".LogIn.LogInActivity"
-    android:id="@+id/backgroundRelativeLayout">
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:id="@+id/backgroundRelativeLayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/darkgreen"
+                android:paddingBottom="@dimen/activity_vertical_margin"
+                android:paddingLeft="@dimen/activity_horizontal_margin"
+                android:paddingRight="@dimen/activity_horizontal_margin"
+                android:paddingTop="@dimen/activity_vertical_margin"
+                tools:context=".LogIn.LogInActivity">
 
     <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:id="@+id/linearLayout"
-        android:layout_marginTop="25dp">
+        android:layout_alignParentStart="true"
+        android:layout_centerVertical="true"
+        android:orientation="vertical">
 
         <EditText
             android:id="@+id/nameEditText"
@@ -32,7 +34,7 @@
             android:layout_above="@+id/passwordEditText"
             android:ems="10"
             android:hint="Enter your full name..."
-            android:inputType="textCapWords|textPersonName" />
+            android:inputType="textCapWords|textPersonName"/>
 
         <EditText
             android:id="@+id/emailEditText"
@@ -40,7 +42,7 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="Enter your email address..."
-            android:inputType="textEmailAddress" />
+            android:inputType="textEmailAddress"/>
 
         <EditText
             android:id="@+id/usernameEditText"
@@ -53,7 +55,7 @@
             android:layout_below="@+id/logoImageView"
             android:ems="10"
             android:hint="Enter your username..."
-            android:inputType="textPersonName" />
+            android:inputType="textPersonName"/>
 
         <EditText
             android:id="@+id/passwordEditText"
@@ -64,30 +66,47 @@
             android:layout_below="@+id/usernameEditText"
             android:ems="10"
             android:hint="Enter your password..."
-            android:inputType="textPassword" />
+            android:inputType="textPassword"/>
     </LinearLayout>
 
-    <Button
-        android:text="Sign Up"
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/signupButton"
-        android:onClick="signUp"
-        android:layout_below="@+id/linearLayout"
+        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="19dp" />
+        android:layout_marginBottom="46dp">
 
-    <TextView
-        android:text="or, Login"
+        <Button
+            android:id="@+id/signupButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/linearLayout"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="19dp"
+            android:onClick="signUp"
+            android:text="Sign Up"/>
+
+        <TextView
+            android:id="@+id/changeSignupModeTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/signupButton"
+            android:layout_alignBottom="@+id/signupButton"
+            android:layout_marginLeft="15dp"
+            android:layout_marginStart="15dp"
+            android:layout_toEndOf="@+id/signupButton"
+            android:layout_toRightOf="@+id/signupButton"
+            android:text="or, Login"
+            android:textColor="@android:color/holo_blue_dark"/>
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/imageView6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/changeSignupModeTextView"
-        android:layout_alignBaseline="@+id/signupButton"
-        android:layout_alignBottom="@+id/signupButton"
-        android:layout_toRightOf="@+id/signupButton"
-        android:layout_toEndOf="@+id/signupButton"
-        android:layout_marginLeft="15dp"
-        android:layout_marginStart="15dp"
-        android:textColor="@android:color/holo_blue_dark" />
+        android:layout_above="@+id/linearLayout"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="52dp"
+        app:srcCompat="@drawable/maxtwo_logo"/>
 
 </RelativeLayout>
