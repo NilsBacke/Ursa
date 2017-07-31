@@ -75,6 +75,7 @@ public class FeedFragment extends Fragment {
                                 if (e == null) {
                                     Toast.makeText(getActivity(), "Status posted successfully", Toast.LENGTH_SHORT).show();
                                 }
+
                             }
                         });
                     }
