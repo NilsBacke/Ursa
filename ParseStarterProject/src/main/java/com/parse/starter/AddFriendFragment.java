@@ -63,16 +63,22 @@ public class AddFriendFragment extends Fragment {
                 if (list != null && e == null) {
                     userlist.addAll(list);
                     Log.i("Social", userlist.toString());
-                    mAdapter = new AddFriendsRecyclerViewAdapter(userlist);
+                    mAdapter = new AddFriendsRecyclerViewAdapter(userlist, getActivity());
                     mRecyclerView.setAdapter(mAdapter);
                 } else {
                     Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
                 }
             }
         });
-        mAdapter = new AddFriendsRecyclerViewAdapter(userlist);
+        mAdapter = new AddFriendsRecyclerViewAdapter(userlist, getActivity());
 
         return root;
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+
     }
 
 }
