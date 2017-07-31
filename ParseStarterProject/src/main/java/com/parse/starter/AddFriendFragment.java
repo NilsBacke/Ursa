@@ -1,7 +1,6 @@
 package com.parse.starter;
 
 import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DividerItemDecoration;
@@ -17,7 +16,6 @@ import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
-import com.parse.starter.MainFragments.SocialFragment;
 
 import java.util.ArrayList;
 import java.util.List;

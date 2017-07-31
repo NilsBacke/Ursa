@@ -5,7 +5,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -101,8 +100,10 @@ public class MainActivity extends AppCompatActivity
             fragment = new HomeFragment();
         } else if (id == R.id.nav_skills) {
             fragment = new SkillsFragment();
-        } else if (id == R.id.nav_social) {
-            fragment = new SocialFragment();
+        } else if (id == R.id.nav_feed) {
+            fragment = new FeedFragment();
+        } else if (id == R.id.nav_friendslist) {
+            fragment = new FriendsFragment();
         } else if (id == R.id.nav_personal) {
 
         } else if (id == R.id.nav_settings) {

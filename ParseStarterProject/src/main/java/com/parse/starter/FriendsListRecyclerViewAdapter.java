@@ -94,11 +94,8 @@ public class FriendsListRecyclerViewAdapter extends RecyclerView
                         final ParseUser deletedUser = mDataset.get(position);
                         mDataset.remove(position);
                         notifyDataSetChanged();
-                        ArrayList<String> friendsusernames = new ArrayList<String>();
-                        for (ParseUser user : mDataset) {
-                            friendsusernames.add(user.getUsername());
-                        }
-                        ParseUser.getCurrentUser().put("friends", friendsusernames);
+
+                        ParseUser.getCurrentUser().getList("friends").remove(deletedUser);
                         ParseUser.getCurrentUser().saveInBackground(new SaveCallback() {
                             @Override
                             public void done(ParseException e) {
