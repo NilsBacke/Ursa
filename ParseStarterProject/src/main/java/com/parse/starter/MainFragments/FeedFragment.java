@@ -15,6 +15,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,6 +26,7 @@ import com.parse.ParseQuery;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
 import com.parse.starter.AddFriendFragment;
+import com.parse.starter.FeedListViewAdapter;
 import com.parse.starter.FriendsListRecyclerViewAdapter;
 import com.parse.starter.R;
 
@@ -69,14 +71,13 @@ public class FeedFragment extends Fragment {
                         ParseObject status = new ParseObject("Status");
                         status.put("content", statusEditText.getText().toString());
                         status.put("createdBy", ParseUser.getCurrentUser().getUsername());
+                        status.put("createdByName", ParseUser.getCurrentUser().get("name").toString());
                         status.saveInBackground(new SaveCallback() {
                             @Override
                             public void done(ParseException e) {
                                 if (e == null) {
                                     Toast.makeText(getActivity(), "Status posted successfully", Toast.LENGTH_SHORT).show();
                                 }
-
-
                             }
                         });
                     }
@@ -93,7 +94,33 @@ public class FeedFragment extends Fragment {
             }
         });
 
+        final ListView feedListView = (ListView) root.findViewById(R.id.feedListView);
+
+        ParseQuery<ParseObject> query = ParseQuery.getQuery("Status");
+        if (ParseUser.getCurrentUser().getList("friends") != null) {
+            Log.i("Done", ParseUser.getCurrentUser().getList("friends").toString());
+//            query.whereContainedIn("createdBy", ParseUser.getCurrentUser().getList("friends"));
+            query.orderByDescending("createdAt");
+            try {
+                Log.i("List", query.find().toString());
+            } catch (Exception e) {
+
+            }
+            query.findInBackground(new FindCallback<ParseObject>() {
+                @Override
+                public void done(List<ParseObject> list, ParseException e) {
+                    if (e == null) {
+                        ArrayList<ParseObject> arrayList = new ArrayList<ParseObject>();
+                        arrayList.addAll(list);
+                        Log.i("Done", arrayList.toString());
+                        FeedListViewAdapter adapter = new FeedListViewAdapter(arrayList, getActivity());
+                        feedListView.setAdapter(adapter);
+                    }
+                }
+            });
+        }
         return root;
     }
+
 
 }
