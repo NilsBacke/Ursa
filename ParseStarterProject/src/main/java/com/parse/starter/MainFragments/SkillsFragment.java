@@ -3,7 +3,9 @@ package com.parse.starter.MainFragments;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.DividerItemDecoration;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -11,6 +13,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.parse.starter.FourPillarsFragments.AgilityFragment;
+import com.parse.starter.FourPillarsFragments.SpeedFragment;
+import com.parse.starter.FourPillarsFragments.StaminaFragment;
+import com.parse.starter.FourPillarsFragments.StrengthFragment;
 import com.parse.starter.R;
 import com.parse.starter.SkillsRecyclerViewAdapter;
 
@@ -41,15 +47,10 @@ public class SkillsFragment extends Fragment {
 
         // For images, see licensing info in raw
         ArrayList<DataObject> list = new ArrayList<>();
-        list.add(new DataObject("Running", R.drawable.running));
-        list.add(new DataObject("Spinning", R.drawable.spinning));
-        list.add(new DataObject("Squats", R.drawable.squats));
-        list.add(new DataObject("Box Jumping", R.drawable.boxjumping));
-        list.add(new DataObject("Deadlifting", R.drawable.deadlifting));
-        list.add(new DataObject("Curling", R.drawable.curling));
-        list.add(new DataObject("Bench Press", R.drawable.benchpress));
-        list.add(new DataObject("Vertical Leaps", R.drawable.verticalleaps));
-        list.add(new DataObject("Body Weight", R.drawable.bodyweight));
+        list.add(new DataObject("Strength", R.drawable.deadlifting));
+        list.add(new DataObject("Agility", R.drawable.boxjumping));
+        list.add(new DataObject("Speed", R.drawable.running));
+        list.add(new DataObject("Stamina", R.drawable.spinning));
 
         mRecyclerView = (RecyclerView) root.findViewById(R.id.skillsRecyclerView);
         mRecyclerView.setHasFixedSize(true);
@@ -70,6 +71,30 @@ public class SkillsFragment extends Fragment {
             @Override
             public void onItemClick(int position, View v) {
                 Log.i("Skills", " Clicked on Item " + position);
+
+                Fragment fragment = null;
+
+                switch (position) {
+                    case 0:
+                        fragment = new StrengthFragment();
+                        break;
+                    case 1:
+                        fragment = new AgilityFragment();
+                        break;
+                    case 2:
+                        fragment = new SpeedFragment();
+                        break;
+                    case 3:
+                        fragment = new StaminaFragment();
+                        break;
+                    default:
+                        break;
+                }
+                if (fragment != null) {
+                    FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+                    ft.replace(R.id.skills_frame, fragment);
+                    ft.commit();
+                }
             }
         });
     }
